@@ -1,5 +1,8 @@
 # Changelog
 
-## 2.2.1
+## 2.2.2
+- Restore the ResoniteModLoader (RML) build and target the current .NET 10 Resonite runtime.
+- Build and distribute the standalone CustomInspectors DLL.
 
-Initial Release (the version number is so high, because the RML version had this number as well)
+## 2.2.1
+- Initial release (the version number is so high because the RML version had it as well).

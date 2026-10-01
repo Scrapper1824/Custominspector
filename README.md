@@ -1,25 +1,32 @@
-# CustomInspectors
-[![Thunderstore Badge](https://modding.resonite.net/assets/available-on-thunderstore.svg)](https://thunderstore.io/c/resonite/)
+# CustomInspectors (RML)
 
-A [Resonite](https://resonite.com/) mod that allows you to use custom inspector panels by saving them and favoriting them in your inventory.<br>
-Make sure to wait for it to finish syncing before favoriting or it won't work!<br>
-The `SceneInspector` component MUST be on the top level slot of the inspector, but most should be doing that anyway.
+A ResoniteModLoader (RML) mod that lets you use custom inspector panels by saving them to your inventory and selecting **Set Inspector**. The `SceneInspector` component must be on the saved inspector's top-level slot. Wait for the item to finish syncing before favoriting it.
 
-## Installation (Manual)
-1. Install [BepisLoader](https://github.com/ResoniteModding/BepisLoader) for Resonite.
-2. Download the latest release ZIP file (e.g., `art0007i-CustomInspectors-1.0.0.zip`) from the [Releases](https://github.com/art0007i/CustomInspectors/releases) page.
-3. Extract the ZIP and copy the `plugins` folder to your BepInEx folder in your Resonite installation directory:
-   - **Default location:** `C:\Program Files (x86)\Steam\steamapps\common\Resonite\BepInEx\`
-4. Start the game. If you want to verify that the mod is working you can check your BepInEx logs.
+This repository contains the RML build of [art0007i/CustomInspectors](https://github.com/art0007i/CustomInspectors), adapted for the current Resonite .NET 10 runtime.
 
-## Building
+## Installation
 
-If using a mod manager (such as gale or r2), it's recommended to symlink `Resonite/BepInEx` folder to your mod manager profile's BepInEx folder.
+1. Install [ResoniteModLoader](https://github.com/resonite-modding-group/ResoniteModLoader).
+2. Download `CustomInspectors.dll` from this repository's Releases page and place it in Resonite's `rml_mods` folder.
+3. Install the [RML `SpecialItemsLib.dll` 2.0.3](https://github.com/art0007i/SpecialItemsLib/releases/download/2.0.3/SpecialItemsLib.dll) in the same `rml_mods` folder. SpecialItemsLib 2.0.4 is a BepisLoader package, not the RML DLL.
+4. Start Resonite, save an inspector with `SceneInspector` on its top-level slot, and wait for it to sync. Select it in inventory and use **Set Inspector**.
 
-In my case it was
-```bash
-cd $HOME/.steam/root/steamapps/common/Resonite
-ln -s $HOME/.local/share/com.kesomannen.gale/resonite/profiles/Default/BepInEx BepInEx
+## Build
+
+Requirements: .NET 10 SDK, Resonite's game references (provided by NuGet), and the RML `SpecialItemsLib.dll` 2.0.3 assembly reference.
+
+Place `SpecialItemsLib.dll` in Resonite's `rml_mods` folder, then run:
+
+```powershell
+dotnet build Plugin/CustomInspectors.csproj -c Release -p:ResonitePath="C:/Program Files (x86)/Steam/steamapps/common/Resonite/"
 ```
 
-This way it should pick up the dependancy SpecialItemsLib.dll automatically
+The build output is `Plugin/bin/Release/net10.0/CustomInspectors.dll`.
+
+## AI assistance disclosure
+
+AI tools assisted with the RML port, project setup, documentation, and the prebuilt DLL. The resulting project was compiled against ResoniteModLoader 5.0.1 and the RML SpecialItemsLib 2.0.3 DLL. AI assistance does not change the original project's authorship: the upstream project is by art0007i. Review the source and test the mod in Resonite before using it.
+
+## License
+
+This project is distributed under the MIT No Attribution license. See [LICENSE](LICENSE).
